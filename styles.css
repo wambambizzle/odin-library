@@ -5,6 +5,11 @@
 .container {
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
 .books-content {
   display: flex;
   flex-wrap: wrap;
@@ -22,4 +27,61 @@
 
 .book-title {
   font-size: 20px;
+}
+
+.form-title {
+  font-size: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 400;
+  color: black;
+  padding-bottom: 15px;
+}
+
+.form-group {
+  /* TODO: remove? */
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 12px;
+  width: 300px;
+}
+
+.form-row label {
+  font-size: 14px;
+  font-weight: 300;
+  font-family: Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+}
+
+.add-book,
+.form-button {
+  color: white;
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: lightgray;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: 0px;
+  margin-top: 12px;
+}
+
+.form-close-button {
+  color: white;
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: lightgray;
+  padding: 12px;
+  border-radius: 8px;
+  border: 0px;
+}
+
+::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
 }

@@ -10,6 +10,72 @@
   </head>
   <body>
     <div class="container">
+      <div class="header">
+        <h1>My Library</h1>
+        <button class="add-book">Add Book</button>
+        <dialog>
+          <div class="form">
+            <div class="form-header">
+              <div class="form-title">Book Details</div>
+
+              <button class="form-close-button">x</button>
+            </div>
+            <div class="form-container">
+              <form id="book-creation-form" action method="">
+                <div class="form-group">
+                  <div class="form-row">
+                    <label for="book_title">Title*</label>
+                    <input
+                      class="book_title_validation"
+                      type="text"
+                      id="book_title"
+                      name="book_title"
+                      minlength="3"
+                      required
+                    />
+                  </div>
+
+                  <div class="form-row">
+                    <label for="book_author">Author*</label>
+                    <input
+                      type="text"
+                      id="book_author"
+                      name="book_author"
+                      minlength="4"
+                    />
+                  </div>
+
+                  <div class="form-row">
+                    <label for="page-numbers">No. of Pages*</label>
+                    <input
+                      type="number"
+                      id="page-numbers"
+                      name="page-numbers"
+                      required
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    Have you read the book yet? <br />
+                    <label for="yes">Yes</label>
+                    <input type="radio" id="yes" name="has_read" value="true" />
+                    <label for="no">No</label>
+                    <input type="radio" id="no" name="has_read" value="false" />
+                  </div>
+
+                  <button
+                    type="submit"
+                    form="book-creation-form"
+                    class="form-button"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </dialog>
+      </div>
       <div class="books-content"></div>
     </div>
   </body>

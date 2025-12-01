@@ -1,5 +1,10 @@
 const container = document.querySelector(".container");
 const booksContent = document.querySelector(".books-content");
+const addButton = document.querySelector(".add-book");
+const dialog = document.querySelector("dialog");
+const closeDialogButton = document.querySelector(".form-close-button");
+
+// TODO: add close button
 
 const myLibrary = [];
 
@@ -54,3 +59,17 @@ function showBooks() {
 
 setTestBooks();
 showBooks();
+setAddBookListener();
+setCloseDialogListener();
+
+function setAddBookListener() {
+  addButton.addEventListener("click", () => {
+    dialog.showModal();
+  });
+}
+
+function setCloseDialogListener() {
+  closeDialogButton.addEventListener("click", () => {
+    dialog.close();
+  });
+}
