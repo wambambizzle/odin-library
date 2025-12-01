@@ -69,7 +69,8 @@ function setAddBookListener() {
 }
 
 function setCloseDialogListener() {
-  closeDialogButton.addEventListener("click", () => {
+  closeDialogButton.addEventListener("click", (event) => {
+    event.preventDefault();
     dialog.close();
   });
 }
