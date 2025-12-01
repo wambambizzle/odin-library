@@ -1,3 +1,6 @@
+const container = document.querySelector(".container");
+const booksContent = document.querySelector(".books-content");
+
 const myLibrary = [];
 
 function Book(title, author, pages, hasRead) {
@@ -21,3 +24,32 @@ function addBookToLibrary(title, author, pages, hasRead) {
   let book = new Book(title, author, pages, hasRead);
   myLibrary.push(book);
 }
+
+// TODO: remove later
+function setTestBooks() {
+  let book1 = new Book("The Hobbit", "J.R.R Tolkien", 295, false);
+  let book2 = new Book("The Simple Path to Wealth", "J.L. Collins", 395, true);
+  let book3 = new Book("Some other book title", "Budget Dog", 321, true);
+  myLibrary.push(book1, book2, book3);
+}
+
+function showBooks() {
+  // TODO:
+  myLibrary.forEach((book) => {
+    // TODO: move this logic to a function
+    const div = document.createElement("div");
+    div.classList.add("book");
+    // TODO: use book id as some sort of div ID
+    // TODO: clean this up later
+    div.innerHTML = `<div class="book-title">${book.title}</div>
+      <div class="book-author">${book.author}</div>
+      <div class="book-pages">${book.pages}</div>
+      <div class="book-read">${book.hasRead ? "Read" : "Not read"}</div>
+    `;
+    // div.data = book;
+    booksContent.appendChild(div);
+  });
+}
+
+setTestBooks();
+showBooks();

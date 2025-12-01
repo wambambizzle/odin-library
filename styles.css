@@ -1,3 +1,14 @@
 * {
   margin: 0;
 }
+
+.book {
+  border: 2px solid lightgray;
+  border-radius: 6px;
+  width: 150px;
+  padding: 8px;
+}
+
+.book-title {
+  font-size: 20px;
+}
