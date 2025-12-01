@@ -70,6 +70,9 @@
   padding: 12px 24px;
   border-radius: 8px;
   border: 0px;
+}
+
+.form-button {
   margin-top: 12px;
 }
 
@@ -78,7 +81,7 @@
   font-size: 18px;
   font-family: inherit;
   background-color: lightgray;
-  padding: 12px;
+  padding: 2px 12px 2px 12px;
   border-radius: 8px;
   border: 0px;
 }

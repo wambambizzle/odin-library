@@ -3,6 +3,7 @@ const booksContent = document.querySelector(".books-content");
 const addButton = document.querySelector(".add-book");
 const dialog = document.querySelector("dialog");
 const closeDialogButton = document.querySelector(".form-close-button");
+const formButton = document.querySelector(".form-button");
 
 // TODO: add close button
 
@@ -28,6 +29,23 @@ function Book(title, author, pages, hasRead) {
 function addBookToLibrary(title, author, pages, hasRead) {
   let book = new Book(title, author, pages, hasRead);
   myLibrary.push(book);
+
+  return book;
+}
+
+function displayBookInLibrary(book) {
+  const div = document.createElement("div");
+  div.classList.add("book");
+  // TODO: use book id as some sort of div ID
+  div.id = book.id;
+  // TODO: clean this up later
+  div.innerHTML = `<div class="book-title">${book.title}</div>
+      <div class="book-author">${book.author}</div>
+      <div class="book-pages">${book.pages}</div>
+      <div class="book-read">${book.hasRead ? "Read" : "Not read"}</div>
+    `;
+
+  booksContent.appendChild(div);
 }
 
 // TODO: remove later
@@ -39,21 +57,8 @@ function setTestBooks() {
 }
 
 function showBooks() {
-  // TODO:
   myLibrary.forEach((book) => {
-    // TODO: move this logic to a function
-    const div = document.createElement("div");
-    div.classList.add("book");
-    // TODO: use book id as some sort of div ID
-    div.id = book.id;
-    // TODO: clean this up later
-    div.innerHTML = `<div class="book-title">${book.title}</div>
-      <div class="book-author">${book.author}</div>
-      <div class="book-pages">${book.pages}</div>
-      <div class="book-read">${book.hasRead ? "Read" : "Not read"}</div>
-    `;
-
-    booksContent.appendChild(div);
+    displayBookInLibrary(book);
   });
 }
 
@@ -61,6 +66,7 @@ setTestBooks();
 showBooks();
 setAddBookListener();
 setCloseDialogListener();
+setFormSubmitListener();
 
 function setAddBookListener() {
   addButton.addEventListener("click", () => {
@@ -70,7 +76,46 @@ function setAddBookListener() {
 
 function setCloseDialogListener() {
   closeDialogButton.addEventListener("click", (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     dialog.close();
+  });
+}
+
+function setFormSubmitListener() {
+  formButton.addEventListener("click", (event) => {
+    const bookTitle = document.querySelector("#book_title");
+    const bookAuthor = document.querySelector("#book_author");
+    const bookPages = document.querySelector("#page-numbers");
+    const hasRead = document.querySelector('input[name="has_read"]:checked');
+
+    console.log(`### hasRead: ${hasRead.value}`);
+
+    // TODO: remove
+    console.log(
+      `title: ${bookTitle.value}, author: ${bookAuthor.value}, page: ${bookPages.value}`
+    );
+
+    if (
+      bookTitle.value === "" ||
+      bookAuthor.value === "" ||
+      bookPages.value === "" ||
+      hasRead.value === ""
+    ) {
+      alert("Bruh");
+      return;
+    }
+
+    const read = hasRead.value.toLowerCase() === "true";
+
+    let newBook = addBookToLibrary(
+      bookTitle.value,
+      bookAuthor.value,
+      bookPages.value,
+      read
+    );
+    // TODO: clear values after
+    displayBookInLibrary(newBook);
+    dialog.close();
+    event.preventDefault();
   });
 }
