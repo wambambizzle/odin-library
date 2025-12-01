@@ -6,11 +6,6 @@ const closeDialogButton = document.querySelector(".form-close-button");
 const formButton = document.querySelector(".form-button");
 const form = document.querySelector(".form");
 
-// const bookTitle = document.querySelector("#book_title");
-// const bookAuthor = document.querySelector("#book_author");
-// const bookPages = document.querySelector("#page-numbers");
-// const hasRead = document.querySelector('input[name="has_read"]:checked');
-
 const myLibrary = [];
 
 function Book(title, author, pages, hasRead) {
@@ -81,7 +76,6 @@ function setAddBookListener() {
 
 function setCloseDialogListener() {
   closeDialogButton.addEventListener("click", (event) => {
-    // event.preventDefault();
     dialog.close();
   });
 }
@@ -92,11 +86,6 @@ function setFormSubmitListener() {
     const bookAuthor = document.querySelector("#book_author");
     const bookPages = document.querySelector("#page-numbers");
     const hasRead = document.querySelector('input[name="has_read"]:checked');
-
-    // TODO: remove
-    // console.log(
-    //   `title: ${bookTitle.value}, author: ${bookAuthor.value}, page: ${bookPages.value}`
-    // );
 
     if (
       bookTitle.value === "" ||
@@ -116,7 +105,7 @@ function setFormSubmitListener() {
       bookPages.value,
       read
     );
-    // TODO: clear values after
+
     displayBookInLibrary(newBook);
 
     dialog.close();
@@ -124,12 +113,6 @@ function setFormSubmitListener() {
     event.preventDefault();
   });
 }
-
-// function resetForm() {
-form.addEventListener("reset", (event) => {
-  event.preventDefault();
-});
-// }
 
 function clearFormData() {
   document.querySelector("#book_title").value = "";
