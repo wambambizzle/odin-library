@@ -2,7 +2,18 @@
   margin: 0;
 }
 
+.container {
+}
+
+.books-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
 .book {
+  text-align: left;
+  text-align-last: center;
   border: 2px solid lightgray;
   border-radius: 6px;
   width: 150px;

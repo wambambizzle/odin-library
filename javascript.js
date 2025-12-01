@@ -40,13 +40,14 @@ function showBooks() {
     const div = document.createElement("div");
     div.classList.add("book");
     // TODO: use book id as some sort of div ID
+    div.id = book.id;
     // TODO: clean this up later
     div.innerHTML = `<div class="book-title">${book.title}</div>
       <div class="book-author">${book.author}</div>
       <div class="book-pages">${book.pages}</div>
       <div class="book-read">${book.hasRead ? "Read" : "Not read"}</div>
     `;
-    // div.data = book;
+
     booksContent.appendChild(div);
   });
 }
