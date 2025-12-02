@@ -62,7 +62,9 @@
 }
 
 .add-book,
-.form-button {
+.form-button,
+.remove-book-button,
+.toggle-read-button {
   color: white;
   font-size: 18px;
   font-family: inherit;
@@ -88,6 +90,11 @@
 
 ::backdrop {
   background-color: rgba(0, 0, 0, 0.5);
+}
+
+.remove-book-button,
+.toggle-read-button {
+  padding: 6px 12px;
 }
 
 dialog {
