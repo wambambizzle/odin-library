@@ -42,12 +42,14 @@ function displayBookInLibrary(book) {
       <div class="book-author">${book.author}</div>
       <div class="book-pages">${book.pages}</div>
       <div class="book-read">${book.hasRead ? "Read" : "Not read"}</div>
+      <button class="remove-book-button" id=${book.id}>Remove</button>
     `;
 
   booksContent.appendChild(div);
+
+  setRemoveBookListener(book);
 }
 
-// TODO: remove later
 function setTestBooks() {
   let book1 = new Book("The Hobbit", "J.R.R Tolkien", 295, false);
   let book2 = new Book("The Simple Path to Wealth", "J.L. Collins", 395, true);
@@ -107,10 +109,23 @@ function setFormSubmitListener() {
     );
 
     displayBookInLibrary(newBook);
+    setRemoveBookListener(newBook);
 
     dialog.close();
     clearFormData();
     event.preventDefault();
+  });
+}
+
+function setRemoveBookListener(book) {
+  const removeBookButtons = document.querySelectorAll(".remove-book-button");
+  removeBookButtons.forEach((button) => {
+    if (button.id === book.id) {
+      button.addEventListener("click", (event) => {
+        console.log(`button id: ${button.id}`);
+        removeBook(book.id);
+      });
+    }
   });
 }
 
@@ -120,4 +135,20 @@ function clearFormData() {
   document.querySelector("#page-numbers").value = "";
   document.querySelector("#has_read_yes").checked = false;
   document.querySelector("#has_read_no").checked = false;
+}
+
+function removeBook(bookId) {
+  let indexToRemove = myLibrary.map((book) => book.id).indexOf(bookId);
+  // Remove from local store by Index
+  myLibrary.splice(indexToRemove, 1);
+
+  const books = document.getElementsByClassName("book");
+
+  // Remove the node from the dom by ID
+  Array.from(books).forEach((book) => {
+    if (book.id === bookId) {
+      const parentNode = book.parentNode;
+      parentNode.removeChild(book);
+    }
+  });
 }
