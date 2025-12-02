@@ -25,6 +25,11 @@ function Book(title, author, pages, hasRead) {
   };
 }
 
+Book.prototype.toggleReadStatus = function () {
+  console.log(`### this.read: ${this.hasRead}`);
+  this.hasRead = !this.hasRead;
+};
+
 function addBookToLibrary(title, author, pages, hasRead) {
   let book = new Book(title, author, pages, hasRead);
   myLibrary.push(book);
@@ -35,11 +40,9 @@ function addBookToLibrary(title, author, pages, hasRead) {
 function displayBookInLibrary(book) {
   const div = document.createElement("div");
   div.classList.add("book");
-  // TODO: use book id as some sort of div ID
   div.id = book.id;
   // TODO: clean this up later
 
-  console.log(`book.read :${book.hasRead}`);
   const readCopy = book.hasRead ? "Mark as Unread" : "Mark as Read";
 
   div.innerHTML = `<div class="book-title">${book.title}</div>
@@ -143,10 +146,8 @@ function setToggleReadListener(book) {
   toggleBookButtons.forEach((button) => {
     if (button.id === book.id) {
       button.addEventListener("click", (event) => {
-        book.hasRead = !book.hasRead;
+        book.toggleReadStatus();
 
-        // TODO: JNA pick up here - why isnt this working
-        // book.toggleReadStatus();
         let indexToUpdate = myLibrary.map((book) => book.id).indexOf(button.id);
         myLibrary[indexToUpdate] = book;
         rerenderAllBooks();
@@ -179,10 +180,6 @@ function removeBook(bookId) {
   });
 }
 
-Book.prototype.toggleReadStatus = function () {
-  this.read = !this.read;
-};
-
 function rerenderAllBooks() {
   const booksContent = document.querySelector(".books-content");
   booksContent.innerHTML = "";
@@ -190,4 +187,8 @@ function rerenderAllBooks() {
   myLibrary.forEach((book) => {
     displayBookInLibrary(book);
   });
+}
+
+function findBookById(bookId) {
+  return myLibrary.find((book) => book.id === bookId);
 }
